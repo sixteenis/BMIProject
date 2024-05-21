@@ -35,12 +35,16 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        heightTextField.delegate = self
+        weighttextField.delegate = self
+        
         setLabel()
         setImage()
         setTextField()
         setButton()
         
     }
+    
     // MARK: - 뷰 세팅 구간
     func setLabel() {
         mainLabel.text = "BMI Calculator"
@@ -102,7 +106,8 @@ class ViewController: UIViewController {
         textField.clipsToBounds = true // 깍을 때 불편하게 나오는거 해결
         textField.leftView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 12.0, height: 0.0))
         textField.leftViewMode = .always
-        textField.keyboardType = .numberPad
+        //textField.clearButtonMode = .always
+        //textField.keyboardType = .numberPad
         
     }
     
@@ -210,7 +215,22 @@ class ViewController: UIViewController {
         
         
     }
-    
+    // MARK: - 키보드 세팅
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+      if textField == heightTextField {
+          weighttextField.becomeFirstResponder()
+      } else {
+          weighttextField.resignFirstResponder()
+      }
+      return true
+    }
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//        if let input = Int(string){
+//            return true
+//        }else{
+//            return false
+//        }
+//    }
 
 }
 
@@ -218,3 +238,7 @@ class ViewController: UIViewController {
 //var bmi = 0.0
 //var resultTitle = ""
 //var resultBackgroundColor: UIColor = .clear
+
+extension ViewController: UITextFieldDelegate {
+  
+}

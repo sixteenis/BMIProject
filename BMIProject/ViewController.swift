@@ -174,9 +174,9 @@ class ViewController: UIViewController {
             return
         }
         if let n = nickName {
-            previousRecord.text = "\(n)님!\n이전 기록 \n 키: \(h)\n 몸무게 \(w)"
+            previousRecord.text = "\(n)님의 이전 기록! \n 키: \(h)\n 몸무게 \(w)"
         }else{
-            previousRecord.text = "익명님!\n이전 기록 \n 키: \(h)\n 몸무게 \(w)"
+            previousRecord.text = "익명님의 이전 기록! \n 키: \(h)\n 몸무게 \(w)"
         }
     }
     

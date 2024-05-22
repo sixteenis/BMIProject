@@ -125,6 +125,15 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wzf-Pb-y0O">
+                                <rect key="frame" x="20" y="209" width="167.33333333333334" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="Dld-4p-F1V"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -141,15 +150,18 @@
                             <constraint firstItem="VIo-o2-oBY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="GGq-fn-ATW"/>
                             <constraint firstItem="olB-JQ-Wwe" firstAttribute="top" secondItem="VIo-o2-oBY" secondAttribute="bottom" id="GTK-dn-XbJ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="vCJ-Qt-lvU" secondAttribute="trailing" constant="20" id="Gt6-8h-LNF"/>
+                            <constraint firstItem="wzf-Pb-y0O" firstAttribute="top" secondItem="tKa-Cb-ioK" secondAttribute="bottom" constant="10" id="Ida-93-bXm"/>
                             <constraint firstItem="olB-JQ-Wwe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="K2h-wU-wsQ"/>
                             <constraint firstItem="p8C-eb-Sqw" firstAttribute="top" secondItem="6Cx-0B-CGi" secondAttribute="bottom" id="TTx-6n-aDD"/>
                             <constraint firstItem="p8C-eb-Sqw" firstAttribute="top" secondItem="6Cx-0B-CGi" secondAttribute="bottom" id="Wjr-zi-sbg"/>
                             <constraint firstItem="6Cx-0B-CGi" firstAttribute="top" secondItem="olB-JQ-Wwe" secondAttribute="bottom" constant="25" id="X08-HY-wqk"/>
+                            <constraint firstItem="wzf-Pb-y0O" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="XqS-Qu-BmA"/>
                             <constraint firstItem="Hnj-fn-FGN" firstAttribute="top" secondItem="UpG-N4-q9J" secondAttribute="bottom" constant="60" id="YpX-yA-Tga"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="olB-JQ-Wwe" secondAttribute="trailing" constant="20" id="ZI5-RX-8Ar"/>
                             <constraint firstItem="tKa-Cb-ioK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="aUa-zK-ih9"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="p8C-eb-Sqw" secondAttribute="trailing" constant="20" id="c1K-UU-DXg"/>
                             <constraint firstItem="olB-JQ-Wwe" firstAttribute="top" secondItem="G4V-Bh-Ofo" secondAttribute="bottom" constant="10" id="dJR-nq-1LP"/>
+                            <constraint firstItem="VIo-o2-oBY" firstAttribute="leading" secondItem="wzf-Pb-y0O" secondAttribute="trailing" constant="20" id="eU9-ea-qFN"/>
                             <constraint firstItem="FSf-WE-alM" firstAttribute="centerY" secondItem="p8C-eb-Sqw" secondAttribute="centerY" id="efy-ft-CUE"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="UpG-N4-q9J" secondAttribute="trailing" constant="20" id="fpv-QB-W6o"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="vCJ-Qt-lvU" secondAttribute="trailing" constant="20" id="iaL-E1-XSh"/>
@@ -172,6 +184,7 @@
                         <outlet property="heightTextField" destination="olB-JQ-Wwe" id="5iF-PG-G5T"/>
                         <outlet property="mainImage" destination="VIo-o2-oBY" id="j9w-O9-K1t"/>
                         <outlet property="mainLabel" destination="scZ-6v-VBB" id="M54-cz-64y"/>
+                        <outlet property="previousRecord" destination="wzf-Pb-y0O" id="VfQ-gR-Wyh"/>
                         <outlet property="randomSetButton" destination="vCJ-Qt-lvU" id="saw-Kl-VDi"/>
                         <outlet property="resultButton" destination="Hnj-fn-FGN" id="YeR-1Z-zmr"/>
                         <outlet property="resultLabel" destination="UpG-N4-q9J" id="he2-Xd-zxp"/>

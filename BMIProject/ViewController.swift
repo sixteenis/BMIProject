@@ -7,10 +7,10 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController { 
     @IBOutlet var mainLabel: UILabel!
     @IBOutlet var subLabel: UILabel!
+    @IBOutlet var previousRecord: UILabel!
     @IBOutlet var mainImage: UIImageView!
     
     @IBOutlet var heightLabel: UILabel!
@@ -42,6 +42,7 @@ class ViewController: UIViewController {
         setImage()
         setTextField()
         setButton()
+        previousRecordTitelSet()
         
     }
     
@@ -66,6 +67,13 @@ class ViewController: UIViewController {
         resultLabel.numberOfLines = 2
         resultLabel.backgroundColor = .red
         resultLabel.isHidden = true
+        
+        previousRecord.textColor = .black
+        previousRecord.font = .systemFont(ofSize: 15)
+        previousRecord.textAlignment = .left
+        previousRecord.numberOfLines = 0
+        
+        
     }
     func setImage() {
         mainImage.image = UIImage(named: "image")
@@ -180,8 +188,9 @@ class ViewController: UIViewController {
     // MARK: -랜덤 입력으로 BMI실행
     @IBAction func randomButtonTapped(_ sender: UIButton) {
         let height = Double.random(in: 140...200)
-        let weight = Double.random(in: 40...110)
+        let weight = Double.random(in: 40...50)
         bmiSet(height, weight: weight)
+        saveData(h: height, w: weight)
         resultButtnChange.toggle()
         resultLabel.isHidden = false
         heightLabel.isHidden = true
@@ -198,11 +207,13 @@ class ViewController: UIViewController {
             guard let height = Double(heightTextField.text!) else {return}
             guard let weight = Double(weighttextField.text!) else {return}
             bmiSet(height, weight: weight)
+            saveData(h: height, w: weight)
             resultLabel.isHidden = false
             heightLabel.isHidden = true
             resultLabel.text = "BMI 결과는 : \(bmi)입니다. \n\(resultTitle)이십니다!"
             resultLabel.backgroundColor = resultBackgroundColor
             resultButton.setTitle("다시 측정하기", for: .normal)
+            
         }else{
             resultButton.setTitle("결과 확인", for: .normal)
             heightTextField.text = ""
@@ -210,6 +221,7 @@ class ViewController: UIViewController {
             resultButtnChange.toggle()
             resultLabel.isHidden = true
             heightLabel.isHidden = false
+            previousRecordTitelSet()
         }
         
         
@@ -231,7 +243,24 @@ class ViewController: UIViewController {
 //            return false
 //        }
 //    }
-
+    // MARK: - 데이터 저장 메서드
+    func saveData(h: Double, w: Double) {
+        let saveh = String(Int(h))
+        let savew = String(Int(w))
+        UserDefaults.standard.set(saveh, forKey: "height")
+        UserDefaults.standard.set(savew, forKey: "weight")
+    }
+    func previousRecordTitelSet() {
+        let height = UserDefaults.standard.string(forKey: "height")
+        let weight = UserDefaults.standard.string(forKey: "weight")
+        guard let h = height, let w = weight else {
+            previousRecord.text = "이전 기록이 없습니다!!"
+            return
+        }
+        previousRecord.text = "이전 기록 \n 키: \(h)\n 몸무게 \(w)"
+    }
+//    let height = UserDefaults.standard.string(forKey: "height")
+//    let weight = UserDefaults.standard.string(forKey: "weight")
 }
 
 //var secureBool = false

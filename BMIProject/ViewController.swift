@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController { 
+class ViewController: UIViewController {
     @IBOutlet var mainLabel: UILabel!
     @IBOutlet var subLabel: UILabel!
     @IBOutlet var previousRecord: UILabel!
@@ -22,6 +22,11 @@ class ViewController: UIViewController {
     @IBOutlet var secureButton: UIButton!
     @IBOutlet var randomSetButton: UIButton!
     @IBOutlet var resultButton: UIButton!
+    
+    @IBOutlet var nickNameButton: UISwitch!
+    @IBOutlet var nickNameLabel: UILabel!
+    @IBOutlet var nickNameTextField: UITextField!
+    
     
     @IBOutlet var resultLabel: UILabel!
     
@@ -42,6 +47,7 @@ class ViewController: UIViewController {
         setImage()
         setTextField()
         setButton()
+        nickNameSet()
         previousRecordTitelSet()
         
     }
@@ -99,7 +105,20 @@ class ViewController: UIViewController {
         resultButton.tintColor = .white
         resultButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
     }
-
+    func nickNameSet() {
+        nickNameButton.isOn = false
+        
+        nickNameLabel.text = "닉네임 변경 시 토글!"
+        nickNameLabel.textAlignment = .left
+        nickNameLabel.textColor = .black
+        nickNameLabel.font = .systemFont(ofSize: 15)
+        nickNameLabel.isHidden = false
+        
+        nickNameTextField.isHidden = true
+        nickNameTextField.placeholder = "닉네임 입력"
+        nickNameTextField.text = ""
+        
+    }
     // MARK: - 함수 구간
     func labelset(label: UILabel, text: String) {
         label.text = text
@@ -145,32 +164,38 @@ class ViewController: UIViewController {
             resultBackgroundColor = .red
         }
     }
+    // MARK: - 이전 기록 타이틀 세팅
+    func previousRecordTitelSet() {
+        let height = UserDefaults.standard.string(forKey: "height")
+        let weight = UserDefaults.standard.string(forKey: "weight")
+        let nickName = UserDefaults.standard.string(forKey: "name")
+        guard let h = height, let w = weight else {
+            previousRecord.text = "이전 기록이 없습니다!!"
+            return
+        }
+        if let n = nickName {
+            previousRecord.text = "\(n)님!\n이전 기록 \n 키: \(h)\n 몸무게 \(w)"
+        }else{
+            previousRecord.text = "익명님!\n이전 기록 \n 키: \(h)\n 몸무게 \(w)"
+        }
+    }
+    
     
     
     // MARK: - output 구간
-    
-    
     @IBAction func heightButtonEnd(_ sender: UITextField) {
-        
     }
-    
+
     @IBAction func weightButtonEnd(_ sender: UITextField) {
-        
     }
-    
     @IBAction func heightButtonInputing(_ sender: UITextField) {
-        
     }
     
-    
-    
-    
-    
+    @IBAction func nickNameButtonEnd(_ sender: UITextField) {
+    }
     @IBAction func viewTappend(_ sender: UITapGestureRecognizer) {
         view.endEditing(true)
     }
-    
-    
     @IBAction func SecureButtonTapped(_ sender: UIButton) {
         secureBool.toggle()
         if secureBool{
@@ -222,51 +247,48 @@ class ViewController: UIViewController {
             resultLabel.isHidden = true
             heightLabel.isHidden = false
             previousRecordTitelSet()
+            nickNameSet()
+            
         }
         
         
         
     }
+    
+    @IBAction func nickNameSwitchTappend(_ sender: UISwitch) {
+        if sender.isOn{
+            nickNameTextField.isHidden = false
+            nickNameLabel.isHidden = true
+        }else{
+            nickNameTextField.isHidden = true
+            nickNameLabel.isHidden = false
+            nickNameTextField.text = ""
+        }
+    }
+    
     // MARK: - 키보드 세팅
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-      if textField == heightTextField {
-          weighttextField.becomeFirstResponder()
-      } else {
-          weighttextField.resignFirstResponder()
-      }
-      return true
+        if textField == heightTextField {
+            weighttextField.becomeFirstResponder()
+        } else {
+            weighttextField.resignFirstResponder()
+        }
+        return true
     }
-//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-//        if let input = Int(string){
-//            return true
-//        }else{
-//            return false
-//        }
-//    }
     // MARK: - 데이터 저장 메서드
     func saveData(h: Double, w: Double) {
         let saveh = String(Int(h))
         let savew = String(Int(w))
         UserDefaults.standard.set(saveh, forKey: "height")
         UserDefaults.standard.set(savew, forKey: "weight")
-    }
-    func previousRecordTitelSet() {
-        let height = UserDefaults.standard.string(forKey: "height")
-        let weight = UserDefaults.standard.string(forKey: "weight")
-        guard let h = height, let w = weight else {
-            previousRecord.text = "이전 기록이 없습니다!!"
-            return
+        if nickNameTextField.text! != "" {
+            UserDefaults.standard.set(nickNameTextField.text!, forKey: "name")
         }
-        previousRecord.text = "이전 기록 \n 키: \(h)\n 몸무게 \(w)"
     }
-//    let height = UserDefaults.standard.string(forKey: "height")
-//    let weight = UserDefaults.standard.string(forKey: "weight")
+    
+    
 }
 
-//var secureBool = false
-//var bmi = 0.0
-//var resultTitle = ""
-//var resultBackgroundColor: UIColor = .clear
 
 extension ViewController: UITextFieldDelegate {
   
